@@ -1,0 +1,1110 @@
+INSERT QUERY
+
+1. Customer:
+
+INSERT INTO customer(createdat,isdeleted,updatedat,fullname,email,PASSWORD,mobileno)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Saumyashree Bhoi','gsaumya486@gmail.com','Saumya@486','6372798819');
+
+
+INSERT INTO customer(createdat,isdeleted,updatedat,fullname,email,PASSWORD,mobileno)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Subhashree Behera','bsubhashree823@gmail.com','Deepa@823','7853860690');
+
+
+INSERT INTO customer(createdat,isdeleted,updatedat,fullname,email,PASSWORD,mobileno)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Prasant Sahoo','prasant123@gmail.com','prasant@456','7328566111' );
+
+
+INSERT INTO customer(createdat,isdeleted,updatedat,fullname,email,PASSWORD,mobileno)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Abhisek Behera','abhi006@gmail.com','SAbhi@000','8984562310');
+
+
+INSERT INTO customer(createdat,isdeleted,updatedat,fullname,email,PASSWORD,mobileno)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Alok Mohanty','alok4444@gmail.com','Alokz@333','7563210955');
+
+
+INSERT INTO customer(createdat,isdeleted,updatedat,fullname,email,PASSWORD,mobileno)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Ananya swain','sanu4@gmail.com','Anus@012','9955620125');
+
+
+2. Address:
+
+
+INSERT INTO customeraddress(createdat,isdeleted,updatedat,name,addressline1,addressline2,landmark,city,state,country,pincode,isdefault,customer_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Saumyashree','Talakurunia','Gopalpur','near jagannath temple','Balasore','Odisha','India','756044',0,
+(SELECT id FROM customer WHERE mobileno = 6372798819'));
+
+
+INSERT INTO customeraddress(createdat,isdeleted,updatedat,name,addressline1,addressline2,landmark,city,state,country,pincode,isdefault,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Hari krishna','Arad Bazar','sahadevkhunta','Near drean school','Balasore','Odisha','India','756002',1,
+(SELECT id FROM customer WHERE mobileno = '6372798819'));
+
+
+INSERT INTO customeraddress(createdat,isdeleted,updatedat,name,addressline1,addressline2,landmark,city,state,country,pincode,isdefault,customer_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Subhadeepu','Mirigimundi','Hatiadiha','Rupsa','Balasore','Odisha','India','756026',0,
+(SELECT id FROM customer WHERE mobileno = '7853860690'));
+
+
+INSERT INTO customeraddress(createdat,isdeleted,updatedat,name,addressline1,addressline2,landmark,city,state,country,pincode,isdefault,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'priyanka samal','Sabira','Soro','near college','Balasore','Odisha','India','756048',1,
+(SELECT id FROM customer WHERE mobileno = '7853860690'));
+
+
+INSERT INTO customeraddress(createdat,isdeleted,updatedat,name,addressline1,addressline2,landmark,city,state,country,pincode,isdefault,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Abhisek Behera','Anantpur','Soro','infront of masjid','Balasore','Odisha','India','756045',1,
+(SELECT id FROM customer WHERE mobileno='8984562310'));
+
+
+INSERT INTO customeraddress(createdat,isdeleted,updatedat,name,addressline1,addressline2,landmark,city,state,country,pincode,isdefault,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Alok Mohanty','Rasalpur','Remuna','Bakery kane','Balasore','Odisha','India','756010',1,
+(SELECT id FROM customer WHERE mobileno='7563210955'));
+
+
+INSERT INTO customeraddress(createdat,isdeleted,updatedat,name,addressline1,addressline2,landmark,city,state,country,pincode,isdefault,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Ananya Swain','Jagatpur','Jagatpur','medical road','Cuttack','Odisha','India','756070',1,
+(SELECT id FROM customer WHERE mobileno='9955620125'));
+
+3. Product type:
+
+INSERT INTO producttype(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'top wear');
+
+
+INSERT INTO producttype(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'buttom wear');
+
+
+INSERT INTO producttype(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'footware');
+
+
+INSERT INTO producttype(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'jewellery');
+
+
+INSERT INTO producttype(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'electronics');
+
+
+INSERT INTO producttype(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'ethinic wear');
+
+4. Subtype:
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'shirts',(SELECT id FROM producttype WHERE name='top wear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'formal paints',(SELECT id FROM producttype WHERE name='buttom wear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'jeans',(SELECT id FROM producttype WHERE name='buttom wear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'tee shirts',(SELECT id FROM producttype WHERE name='top wear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'saree',(SELECT id FROM producttype WHERE name='ethinic wear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'kurtis',(SELECT id FROM producttype WHERE name='ethinic wear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'lehnga',(SELECT id FROM producttype WHERE name='ethinic wear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'sports shoes',(SELECT id FROM producttype WHERE name='footwear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'formal shoes',(SELECT id FROM producttype WHERE name='footwear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'sandals',(SELECT id FROM producttype WHERE name='footwear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'sleeper',(SELECT id FROM producttype WHERE name='footwear'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'ring',(SELECT id FROM producttype WHERE name='jewellery'));
+
+
+INSERT INTO subtype(createdat,isdeleted,updatedat,name,producttype_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'mobiles',(SELECT id FROM producttype WHERE name='electronics'));
+
+
+5. Category:
+
+INSERT INTO category(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'male');
+
+INSERT INTO category(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'female');
+
+INSERT INTO category(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'kids');
+
+INSERT INTO category(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'unisex');
+
+INSERT INTO category(createdat,isdeleted,updatedat,name)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'not applicable');
+
+6. Designer:
+
+INSERT INTO designer(createdat,isdeleted,updatedat,name,email,password,mobilenumber,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Bill Bowerman','beaverton@gmail.com','AZxdr@4455','1203659595','Beaverton','Oregon','apex road','Oregon','Oregon','USA','122333');
+
+
+INSERT INTO designer(createdat,isdeleted,updatedat,name,email,password,mobilenumber,addre ssline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Lee byung chull','xbyung4600@gmail.com','pox@0707','2309898456','Beaverton','Taegu','JD road','Taegu','Taegu','Korea','987654'); 
+
+
+INSERT INTO designer(createdat,isdeleted,updatedat,name,email,password,mobilenumber,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Adolf Dassler','dassleradi333@gmail.com','ZXcsd@456765','1203695842','Beaverton','Herzogenaurach',
+'bjs road','Herzogenaurach','Herzogenaurach','Germany','566128');
+
+
+INSERT INTO designer(createdat,isdeleted,updatedat,name,email,password,mobilenumber,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Mr. Kumar Mangalam Birla','kumarbirla4343@gmail.com','Birla@0087','8652130360','Jaisalmer','Jaisalmer','klm road','Rajasthan ',
+'Rajasthan ','India','659585');
+
+
+INSERT INTO designer(createdat,isdeleted,updatedat,name,email,password,mobilenumber,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Lei Jun','junleixiaomi@gmail.com','Leixiaomi@122','1203206542','wuhan','wuhan','king ju road','Bejing ','Bejing ','China','123456');
+
+
+INSERT INTO designer(createdat,isdeleted,updatedat,name,email,password,mobilenumber,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Li Bingzhong','bingzhong@gmail.com','bingzho@0000','3210689541','wuhan','wuhan','jung road','Bejing ','Bejing ','China','654951');
+
+
+7. Brand:
+
+INSERT INTO brand(createdat,isdeleted,updatedat,name,description,designer_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'adidas','Adidas in full Adidas AG, German manufacturer of athletic shoes and apparel and sporting goods',
+(SELECT id FROM designer WHERE name = 'Adolf Dassler'));
+
+
+INSERT INTO brand(createdat,isdeleted,updatedat,name,description,designer_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,' NIKE','It is an American multinational corporation that is engaged in the design, 
+development, manufacturing, and sales of footwear, apparel, equipment, accessories, and services',
+(SELECT id FROM designer WHERE name = 'Bill Bowerman'));
+
+
+INSERT INTO brand(createdat,isdeleted,updatedat,name,description,designer_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Lee','Lee is an American brand of denim jeans, first produced in 1889 in Salina, Kansas',
+(SELECT id FROM designer WHERE name = 'Lee byung chull'));
+
+
+INSERT INTO brand(createdat,isdeleted,updatedat,name,description,designer_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Peter England','Peter England established in Ireland and in 1997 it launched in India by Madura Fashion & 
+Lifestyle in the mid-price shirt segment in 1997',(SELECT id FROM designer WHERE name = 'Mr. Kumar Mangalam Birla'));
+
+
+INSERT INTO brand(createdat,isdeleted,updatedat,name,description,designer_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Xiaomi','Xiaomi is a Chinese designer and manufacturer of consumer electronics and related software, home 
+appliances, and household Hardware', (SELECT id FROM designer WHERE name = 'Lei Jun'));
+
+
+INSERT INTO brand(createdat,isdeleted,updatedat,name,description,designer_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'real me','Realme (stylized as realme)is a Chinese consumer electronics manufacturer based in Shenzhen, Guangdong',
+(SELECT id FROM designer WHERE NAME = 'Li Bingzhong'));
+
+
+8. Store:
+
+INSERT INTO store(createdat,isdeleted,updatedat,name,description,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'sbd textile','This textile contain the good products that is in low price which is affordable by all the customer',
+'Marathahali','Marathahali','near livspace','Bengaluru','Karnataka','India','560037');
+
+
+INSERT INTO store(createdat,isdeleted,updatedat,name,description,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'NTK fashion','This fashion contain bascically the clothings of all the brands','Noida','Noida','near AWHO colony','Delhi','UP','India','676869');
+
+
+INSERT INTO store(createdat,isdeleted,updatedat,name,description,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'DDL fashion','This textile contain the good products that is in low price','Khargar','Navy Mumbai','national park road','Mumbai','Maharastra','India','554102');
+
+
+INSERT INTO store(createdat,isdeleted,updatedat,name,description,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Rk fashion','This fashion contain bascically the clothings of all the brands',
+'Kolathur','Chennai','near dmart','Chennai','Tamilnadu','India','987456');
+
+
+INSERT INTOstore(createdat,isdeleted,updatedat,name,description,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'ZX mobiles','ZX mobile contains the all mobile in margin price','Noida','Noida','near jp comfort','Delhi','UP','India','666869');
+
+
+INSERT INTO store(createdat,isdeleted,updatedat,name,description,addressline1,addressline2,landmark,city,state,country,pincode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Mobile store','every brand available you want','Khargar','Navy Mumbai','infront of SSB hospital','Mumbai','Maharastra','India','554101');
+
+
+9. Storebrand:
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='adidas'),
+(SELECT id FROM store WHERE NAME='sbd textile'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='adidas'),
+(SELECT id FROM store WHERE NAME='NTK fashion'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='adidas'),
+(SELECT id FROM store WHERE NAME='DDL fashion'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME=' NIKE'),
+(SELECT id FROM store WHERE NAME='sbd textile'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME=' NIKE'),
+(SELECT id FROM store WHERE NAME='NTK fashion'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME=' NIKE'),
+(SELECT id FROM store WHERE NAME='DDL fashion'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='Lee'),
+(SELECT id FROM store WHERE NAME='NTK fashion'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='Lee'),
+(SELECT id FROM store WHERE NAME='Rk fashion'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='Peter England'),
+(SELECT id FROM store WHERE NAME='DDL fashion'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='Peter England'),
+(SELECT id FROM store WHERE NAME='Rk fashion'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='Xiaomi'),
+(SELECT id FROM store WHERE NAME='ZX mobiles'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='Xiaomi'),
+(SELECT id FROM store WHERE NAME='Mobile store'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='real me'),
+(SELECT id FROM store WHERE NAME='Mobile store'));
+
+
+INSERT INTO storebrand(createdat,isdeleted,updatedat,brand_id,store_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+(SELECT id FROM brand WHERE NAME='real me'),
+(SELECT id FROM store WHERE NAME='ZX mobiles'));
+
+
+10. Designation:
+
+
+INSERT INTO designation(createdat,isdeleted,upda
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'manager');
+
+INSERT INTO designation(createdat,isdeleted,updatedat,NAME)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'clerk');
+
+INSERT INTO designation(createdat,isdeleted,updatedat,NAME)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'sales man');
+
+INSERT INTO designation(createdat,isdeleted,updatedat,NAME)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'accounting');
+
+11. Employee:
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Rashmi','rashmi@gmail.com','9876543210',25000,'soro',
+(SELECT id FROM store WHERE name='sbd textile'),
+(SELECT id FROM designation WHERE NAME='manager'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Raghab','raghab@gmail.com','8976543210',18000,'Balasore',
+(SELECT id FROM store WHERE name='sbd textile'),
+(SELECT id FROM designation WHERE NAME='clerk'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'madhu','madhu@gmail.com','9076543210',20000,'Balasore',
+(SELECT id FROM store WHERE name='sbd textile'),
+(SELECT id FROM designation WHERE NAME='sales man'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'madhu','madhu@gmail.com','7776543210',20000,'banglore',
+(SELECT id FROM store WHERE name='sbd textile'),
+(SELECT id FROM designation WHERE NAME='accounting'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'arnav','arnav@gmail.com','8886543210',28000,'mysore',
+(SELECT id FROM store WHERE name='NTK fashion'),
+(SELECT id FROM designation WHERE NAME='accounting'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'sophi','sophi@gmail.com','9326543210',18000,'bhubaneswar',
+(SELECT id FROM store WHERE name='NTK fashion'),
+(SELECT id FROM designation WHERE NAME='clerk'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'azhar','azhar@gmail.com','9326543200',21000,'cuttack',
+(SELECT id FROM store WHERE name='NTK fashion'),
+(SELECT id FROM designation WHERE NAME=sales man));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'jk','jk@gmail.com','8126543200',21000,'cuttack',
+(SELECT id FROM store WHERE name='DDL fashion'),
+(SELECT id FROM designation WHERE NAME='manager'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'jk','vivek@gmail.com','9040102030',21000,'hyderabad',
+(SELECT id FROM store WHERE name='DDL fashion'),
+(SELECT id FROM designation WHERE NAME='accounting'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'jk','avivek@gmail.com','9040102040',21000,'hyderabad',
+(SELECT id FROM store WHERE name='Rk fashion'),
+(SELECT id FROM designation WHERE NAME='manager'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'alok','alok@gmail.com','9040102050',20000,'hyderabad',
+(SELECT id FROM store WHERE name='Rk fashion'),
+(SELECT id FROM designation WHERE NAME='sales man'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'deepa','deepa@gmail.com','9040902020',25000,'hyderabad',
+(SELECT id FROM store WHERE name='ZX mobiles'),
+(SELECT id FROM designation WHERE NAME='manager'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'swagat','seagat@gmail.com','7098902020',20000,'bengaluru',
+(SELECT id FROM store WHERE name='ZX mobiles'),
+(SELECT id FROM designation WHERE NAME='accounting'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'bijay','bijay@gmail.com','9998902020',20000,'bengaluru',
+(SELECT id FROM store WHERE name='ZX mobiles'),
+(SELECT id FROM designation WHERE NAME='sales man'));
+
+
+INSERT INTOemployee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'sanjay','sanjay@gmail.com','9998902000',25000,'chennai',
+(SELECT id FROM store WHERE name='Mobile store'),
+(SELECT id FROM designation WHERE NAME='manager'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'ajay','ajay@gmail.com','9932602000',21000,'chennai',
+(SELECT id FROM store WHERE name='Mobile store'),
+(SELECT id FROM designation WHERE NAME='accounting'));
+
+
+INSERT INTO employee(createdat,isdeleted,updatedat,NAME,email,mobilenumber,salary,address,store_id,designation_id)
+VALUES(UTC_TIMESTAMP,0,UTC_TIMESTAMP,'anuj','anuj@gmail.com','9932310700',20500,'mumbai',
+(SELECT id FROM store WHERE name='Mobile store'),
+(SELECT id FROM designation WHERE NAME='sales man'));
+
+
+12. Size:
+
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'S');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'M');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'L');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'XL');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'XXL');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'4gb/64gb');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'6gb/64gb');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'28');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'30');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'32');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'34');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'36');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'6');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'7');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'8');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'9');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'10');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'6meter');
+
+INSERT INTO size(createdat,isdeleted,updatedat,size)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'not applicable');
+
+
+13. Material:
+
+INSERT INTO material(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'cotton');
+
+INSERT INTO material(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'silk');
+
+INSERT INTO material(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'velvet');
+
+INSERT INTO material(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'leather');
+
+INSERT INTO material(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'wool');
+
+INSERT INTO material(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'not applicable');
+
+14. Color:
+
+INSERT INTO color(createdat,isdeleted,updatedat,name,hexcode)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'black','#000000');
+
+INSERT INTO color(createdat,isdeleted,updatedat,NAME,hexcode)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'red','#FF0000');
+
+INSERT INTO color(createdat,isdeleted,updatedat,NAME,hexcode)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'yellow','#FFFF00');
+
+INSERT INTO color(createdat,isdeleted,updatedat,NAME,hexcode)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'green','#008000');
+
+INSERT INTO color(createdat,isdeleted,updatedat,NAME,hexcode)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'blue','#0000FF');
+
+INSERT INTO color(createdat,isdeleted,updatedat,NAME,hexcode)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'purple','#800080');
+
+INSERT INTO color(createdat,isdeleted,updatedat,NAME,hexcode)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'neptune blue','#2E5D9D');
+
+INSERT INTO color(createdat,isdeleted,updatedat,NAME,hexcode)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'white','#FFFFFF');
+
+15. Washcare:
+
+INSERT INTO washcare(createdat,isdeleted,updatedat,type)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'detergent');
+
+INSERT INTO washcare(createdat,isdeleted,updatedat,type)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'normal wash');
+
+INSERT INTO washcare(createdat,isdeleted,updatedat,type)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'hot wash');
+
+INSERT INTO washcare(createdat,isdeleted,updatedat,type)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'super white wash');
+
+INSERT INTO washcare(createdat,isdeleted,updatedat,type)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'bleach');
+
+INSERT INTO washcare(createdat,isdeleted,updatedat,type)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'not applicable');
+
+16. Product:
+
+INSERT INTO product(createdat,isdeleted,updatedat,name,description,productnumber,subtype_id,material_id,washcare_id,category_id,store_id)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Solid Men Polo Neck Black TShirt','the total value of items is more than Rs 500, Shipping is Free','ORDC75567',
+( SELECT id FROM subtype WHERE NAME='tee shirts'),
+( SELECT id FROM material WHERE NAME='cotton'),
+( SELECT id FROM washcare WHERE type='detergent'),
+( SELECT id FROM category WHERE NAME='male'),
+( SELECT id FROM brand WHERE NAME=’ adidas’));
+
+
+INSERT INTO product(createdat,isdeleted,updatedat,name,description,productnumber,subtype_id,material_id,washcare_id,category_id,store_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'REDMI 10 Power','You can get a lot done every day using the REDMI 10 Power Smartphone and make your life easy','ORDMI928769',
+( SELECT id FROM subtype WHERE NAME='mobiles'),
+( SELECT id FROM material WHERE NAME='not applicable'),
+( SELECT id FROM washcare WHERE type='not applicable'),
+( SELECT id FROM category WHERE NAME='not applicable'),
+( SELECT id FROM brand WHERE NAME=’ Xiaomi’));
+
+
+INSERT INTO product(createdat,isdeleted,updatedat,name,description,productnumber,subtype_id,material_id,washcare_id,category_id,store_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Trendy Sports Running Shoes','Allow your pair of shoes toir and de-odorize at a regular basis, this 
+also helps them retain their natural shape','OLMAY0980769',
+( SELECT id FROM subtype WHERE NAME='sports shoes'),
+( SELECT id FROM material WHERE NAME='leather'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM category WHERE NAME='male'),
+( SELECT id FROM brand WHERE NAME=’ NIKE’));
+
+
+INSERT INTO product(createdat,isdeleted,updatedat,name,description,productnumber,subtype_id,material_id,washcare_id,category_id,store_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Woven Kanjivaram Pure Silk, Art Silk Saree ','This women ethinic fashion saree is good in color and quality','ORTAY0983202',
+( SELECT id FROM subtype WHERE NAME='saree'),
+( SELECT id FROM material WHERE NAME='silk'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM category WHERE NAME='female'),
+( SELECT id FROM brand WHERE NAME=’ Lee’));
+
+
+INSERT INTO product(createdat,isdeleted,updatedat,name,description,productnumber,subtype_id,material_id,washcare_id,category_id,store_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'Women Printed Pure Cotton Anarkali kurtis','This women ethinic kurtis is good in color and quality','KLATXY0989315',
+( SELECT id FROM subtype WHERE NAME='kurtis'),
+( SELECT id FROM material WHERE NAME='cotton'),
+( SELECT id FROM washcare WHERE type='super white wash'),
+( SELECT id FROM category WHERE NAME='female'),
+( SELECT id FROM brand WHERE NAME=’ Peter England’));
+
+17. Weight type:
+
+INSERT INTO weighttype(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'kilogram');
+
+INSERT INTO weighttype(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'gram');
+
+INSERT INTO weighttype(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'liter');
+
+INSERT INTO weighttype(createdat,isdeleted,updatedat,name)
+VALUES (UTC_TIMESTAMP,0,UTC_TIMESTAMP,'pound');
+
+18.Variants:
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,799,599,
+( SELECT id FROM product WHERE name='Solid Men Polo Neck Black T-Shirt'),
+( SELECT id FROM size WHERE size='L'),
+( SELECT id FROM color WHERE name='black'),
+( SELECT id FROM washcare WHERE type='detergent'),
+( SELECT id FROM weighttype WHERE name='gram'),210);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,799,599,
+( SELECT id FROM product WHERE name='Solid Men Polo Neck Black T-Shirt'),
+( SELECT id FROM size WHERE size='XL'),
+( SELECT id FROM color WHERE name='red'),
+( SELECT id FROM washcare WHERE type='detergent'),
+( SELECT id FROM weighttype WHERE name='gram'),210);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,14499,11499,
+( SELECT id FROM product WHERE name='REDMI 10 Power'),
+( SELECT id FROM size WHERE size='4gb/64gb'),
+( SELECT id FROM color WHERE name='neptune blue'),
+( SELECT id FROM washcare WHERE type='not applicable'),
+( SELECT id FROM weighttype WHERE name='gram'),180);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,14499,11499,
+( SELECT id FROM product WHERE name='REDMI 10 Power'),
+( SELECT id FROM size WHERE size='6gb/64gb'),
+( SELECT id FROM color WHERE name='neptune blue'),
+( SELECT id FROM washcare WHERE type='not applicable'),
+( SELECT id FROM weighttype WHERE name='gram'),180);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,999,799,
+( SELECT id FROM product WHERE name='Trendy Sports Running Shoes'),
+( SELECT id FROM size WHERE size='7'),
+( SELECT id FROM color WHERE name='white'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM weighttype WHERE name='gram'),400);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,999,799,
+( SELECT id FROM product WHERE name='Trendy Sports Running Shoes'),
+( SELECT id FROM size WHERE size='8'),
+( SELECT id FROM color WHERE name='black'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM weighttype WHERE name='gram'),400);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,999,799,
+( SELECT id FROM product WHERE name='Trendy Sports Running Shoes'),
+( SELECT id FROM size WHERE size='9'),
+( SELECT id FROM color WHERE name='white'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM weighttype WHERE name='gram'),400);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1499,1199,
+( SELECT id FROM product WHERE name='Woven Kanjivaram Pure Silk, Art Silk Saree '),
+( SELECT id FROM size WHERE size='6meter'),
+( SELECT id FROM color WHERE name='blue'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM weighttype WHERE name='gram'),400);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1499,1199,
+( SELECT id FROM product WHERE name='Woven Kanjivaram Pure Silk, Art Silk Saree '),
+( SELECT id FROM size WHERE size='6meter'),
+( SELECT id FROM color WHERE name='purple'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM weighttype WHERE name='gram'),400);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,599,399,
+( SELECT id FROM product WHERE name='Women Printed Pure Cotton Anarkali kurtis'),
+( SELECT id FROM size WHERE size='S'),
+( SELECT id FROM color WHERE name='purple'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM weighttype WHERE name='gram'),100);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,599,399,
+( SELECT id FROM product WHERE name='Women Printed Pure Cotton Anarkali kurtis'),
+( SELECT id FROM size WHERE size='M'),
+( SELECT id FROM color WHERE name='purple'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM weighttype WHERE name='gram'),100);
+
+
+INSERT INTO variants(createdat,isdeleted,updatedat,mrp,sellingprice,product_id,size_id,color_id,washcare_id,weighttype_id,weight)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,599,399,
+( SELECT id FROM product WHERE name='Women Printed Pure Cotton Anarkali kurtis'),
+( SELECT id FROM size WHERE size='L'),
+( SELECT id FROM color WHERE name='purple'),
+( SELECT id FROM washcare WHERE type='normal wash'),
+( SELECT id FROM weighttype WHERE name='gram'),100);
+
+
+19. Payment details:
+
+INSERT INTO paymentdetails(createdat,isdeleted,updatedat,mode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'COD');
+
+INSERT INTO paymentdetails(createdat,isdeleted,updatedat,mode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,’upi’);
+
+INSERT INTO paymentdetails(createdat,isdeleted,updatedat,mode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'card');
+
+INSERT INTO paymentdetails(createdat,isdeleted,updatedat,mode)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'netbanking');
+
+20. Orders:
+
+INSERT INTO orders(createdat,isdeleted,updatedat,totalprice,ordernumber,customeraddress_id,paymentdetails_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,599,'ODCXZ8700',
+( SELECT id FROM customeraddress WHERE pincode='756044'),
+( SELECT id FROM paymentdetails WHERE MODE='upi'));
+
+
+INSERT INTO orders(createdat,isdeleted,updatedat,totalprice,ordernumber,customeraddress_id,paymentdetails_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,11499,'MNCXZ87990',
+( SELECT id FROM customeraddress WHERE pincode='756048'),
+( SELECT id FROM paymentdetails WHERE MODE='upi'));
+
+
+INSERT INTO orders(createdat,isdeleted,updatedat,totalprice,ordernumber,customeraddress_id,paymentdetails_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,799,'LGTXZ87623',
+( SELECT id FROM customeraddress WHERE pincode='752008'),
+( SELECT id FROM paymentdetails WHERE MODE='card'));
+
+
+INSERT INTO orders(createdat,isdeleted,updatedat,totalprice,ordernumber,customeraddress_id,paymentdetails_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1199,'GDHXZ87279',
+( SELECT id FROM customeraddress WHERE pincode='756045'),
+( SELECT id FROM paymentdetails WHERE MODE='upi'));
+
+
+INSERT INTO orders(createdat,isdeleted,updatedat,totalprice,ordernumber,customeraddress_id,paymentdetails_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,798,'PPHXZ87211',
+( SELECT id FROM customeraddress WHERE pincode='756010'),
+( SELECT id FROM paymentdetails WHERE MODE='upi'));
+
+
+21. Order details:
+
+
+INSERT INTO orderdetails(createdat,isdeleted,updatedat,quantity,expecteddeliverydate,orders_id,variants_id,totalprice,store_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,'2023-05-10',
+( SELECT id FROM orders WHERE ordernumber='ODCXZ8700'),
+( SELECT id FROM variants WHERE size_id=3 AND color_id=1),599,
+( SELECT id FROM store WHERE pincode='560037'));
+
+
+INSERT INTO orderdetails(createdat,isdeleted,updatedat,quantity,expecteddeliverydate,orders_id,variants_id,totalprice,store_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,'2023-05-08',
+( SELECT id FROM orders WHERE ordernumber='MNCXZ87990'),
+( SELECT id FROM variants WHERE size_id=6 AND color_id=7),11499,
+( SELECT id FROM store WHERE pincode='666869'));
+
+
+INSERT INTO orderdetails(createdat,isdeleted,updatedat,quantity,expecteddeliverydate,orders_id,store_id,variants_id,totalprice)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,'2023-05-15',
+( SELECT id FROM orders WHERE ordernumber='LGTXZ87623'),
+( SELECT id FROM store WHERE pincode='676869'),
+( SELECT id FROM variants WHERE size_id=13 AND color_id=8),799);
+
+
+INSERT INTO orderdetails(createdat,isdeleted,updatedat,quantity,expecteddeliverydate,orders_id,store_id,variants_id,totalprice)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,'2023-05-12',
+( SELECT id FROM orders WHERE ordernumber='GDHXZ87279'),
+( SELECT id FROM store WHERE pincode='554102'),
+( SELECT id FROM variants WHERE size_id=17 AND color_id=5),1199);
+
+
+INSERT INTO orderdetails(createdat,isdeleted,updatedat,quantity,expecteddeliverydate,orders_id,store_id,variants_id,totalprice)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,'2023-05-12',
+( SELECT id FROM orders WHERE ordernumber='PPHXZ87211'),
+( SELECT id FROM store WHERE pincode='987456'),
+( SELECT id FROM variants WHERE size_id=1 AND color_id=6),399);
+
+
+INSERT INTO orderdetails(createdat,isdeleted,updatedat,quantity,expecteddeliverydate,orders_id,store_id,variants_id,totalprice)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,'2023-05-12',
+( SELECT id FROM orders WHERE ordernumber='PPHXZ87211'),
+( SELECT id FROM store WHERE pincode='987456'),
+( SELECT id FROM variants WHERE size_id=2 AND color_id=6),399);
+
+
+22. Status:
+
+INSERT INTO status(createdat,isdeleted,updatedat,NAME)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'order confirmed');
+
+INSERT INTO status(createdat,isdeleted,updatedat,NAME)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'ready to dispatch');
+
+INSERT INTO status(createdat,isdeleted,updatedat,NAME)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'dispatch');
+
+INSERT INTO status(createdat,isdeleted,updatedat,NAME)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'out for delivery');
+
+INSERT INTO status(createdat,isdeleted,updatedat,NAME)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'delivered');
+
+
+23. Shipment:
+
+INSERT INTO shipment(createdat,isdeleted,updatedat,orderdetails_id,status_id,logisticpartner)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+( SELECT id FROM orderdetails WHERE orders_id=1 AND variants_id=1),
+( SELECT id FROM status WHERE NAME='order confirmed'),'ekart');
+
+
+INSERT INTO shipment(createdat,isdeleted,updatedat,orderdetails_id,status_id,logisticpartner)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+( SELECT id FROM orderdetails WHERE orders_id=2 AND variants_id=3),
+( SELECT id FROM status WHERE NAME='order confirmed'),'ekart');
+
+
+INSERT INTO shipment(createdat,isdeleted,updatedat,orderdetails_id,status_id,logisticpartner)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+( SELECT id FROM orderdetails WHERE orders_id=3 AND variants_id=5),
+( SELECT id FROM status WHERE NAME='order confirmed'),'ekart');
+
+
+INSERT INTO shipment(createdat,isdeleted,updatedat,orderdetails_id,status_id,logisticpartner)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+( SELECT id FROM orderdetails WHERE orders_id=4 AND variants_id=8),
+( SELECT id FROM status WHERE NAME='order confirmed'),'ekart');
+
+
+INSERT INTO shipment(createdat,isdeleted,updatedat,orderdetails_id,status_id,logisticpartner)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+( SELECT id FROM orderdetails WHERE orders_id=5 AND variants_id=10),
+( SELECT id FROM status WHERE NAME='order confirmed'),'ekart');
+
+
+INSERT INTO shipment(createdat,isdeleted,updatedat,orderdetails_id,status_id,logisticpartner)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,
+( SELECT id FROM orderdetails WHERE orders_id=5 AND variants_id=11),
+( SELECT id FROM status WHERE NAME='order confirmed'),'ekart');
+
+
+24. Ratings and reviews:
+
+INSERT INTO ratingsandreviews(createdat,isdeleted,updatedat,rating,comment,orderdetails_id,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,4.0,'good',
+( SELECT id FROM orderdetails WHERE orders_id=1 AND variants_id=1),
+( SELECT id FROM customer WHERE mobileno='6372798819'));
+
+
+INSERT INTO ratingsandreviews(createdat,isdeleted,updatedat,rating,comment,orderdetails_id,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,4.0,'good',
+( SELECT id FROM orderdetails WHERE orders_id=2 AND variants_id=3),
+( SELECT id FROM customer WHERE mobileno='7853860690'));
+
+
+INSERT INTO ratingsandreviews(createdat,isdeleted,updatedat,rating,comment,orderdetails_id,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP, 4.0,'good',
+( SELECT id FROM orderdetails WHERE orders_id=3 AND variants_id=5),
+( SELECT id FROM customer WHERE mobileno='7328566111'));
+
+
+INSERT INTO ratingsandreviews(createdat,isdeleted,updatedat,rating,comment,orderdetails_id,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP, 4.0,'good',
+( SELECT id FROM orderdetails WHERE orders_id=4 AND variants_id=8),
+( SELECT id FROM customer WHERE mobileno='8984562310'));
+
+
+INSERT INTO ratingsandreviews(createdat,isdeleted,updatedat,rating,comment,orderdetails_id,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP, 4.0,'good',
+( SELECT id FROM orderdetails WHERE orders_id=5 AND variants_id=10),
+( SELECT id FROM customer WHERE mobileno='7563210955'));
+
+
+INSERT INTO ratingsandreviews(createdat,isdeleted,updatedat,rating,comment,orderdetails_id,customer_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP, 4.0,'good',
+( SELECT id FROM orderdetails WHERE orders_id=5 AND variants_id=11),
+( SELECT id FROM customer WHERE mobileno='7563210955'));
+
+25. Cart:
+
+INSERT INTO cart(createdat,isdeleted,updatedat,quantity,customer_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,
+( SELECT id FROM customer WHERE mobileno='9955620125'),
+( SELECT id FROM variants WHERE product_id=5 AND size_id=1 AND color_id=6));
+
+
+INSERT INTO cart(createdat,isdeleted,updatedat,quantity,customer_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,
+( SELECT id FROM customer WHERE mobileno='9955620125'),
+( SELECT id FROM variants WHERE product_id=4 AND size_id=17 AND color_id=5));
+
+
+INSERT INTO cart(createdat,isdeleted,updatedat,quantity,customer_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,
+( SELECT id FROM customer WHERE mobileno='9955620125'),
+( SELECT id FROM variants WHERE product_id=3 AND size_id=14 AND color_id=1));
+
+
+INSERT INTO cart(createdat,isdeleted,updatedat,quantity,customer_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,
+( SELECT id FROM customer WHERE mobileno='7563210955'),
+( SELECT id FROM variants WHERE product_id=1 AND size_id=4 AND color_id=2));
+
+
+INSERT INTO cart(createdat,isdeleted,updatedat,quantity,customer_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,1,
+( SELECT id FROM customer WHERE mobileno='8984562310'),
+( SELECT id FROM variants WHERE product_id=1 AND size_id=4 AND color_id=2));
+
+
+26. Inventory:
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='560037'),
+( SELECT id FROM variants WHERE product_id=1 AND size_id=3 AND color_id=1));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='676869'),
+( SELECT id FROM variants WHERE product_id=1 AND size_id=3 AND color_id=1));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='676869'),
+( SELECT id FROM variants WHERE product_id=1 AND size_id=4 AND color_id=2));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='666869'),
+( SELECT id FROM variants WHERE product_id=2 AND size_id=6 AND color_id=7));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='554101'),
+( SELECT id FROM variants WHERE product_id=2 AND size_id=6 AND color_id=7));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='676869'),
+( SELECT id FROM variants WHERE product_id=3 AND size_id=13 AND color_id=8));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='554102'),
+( SELECT id FROM variants WHERE product_id=3 AND size_id=13 AND color_id=8));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='554102'),
+( SELECT id FROM variants WHERE product_id=4 AND size_id=17 AND color_id=5));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='987456'),
+( SELECT id FROM variants WHERE product_id=4 AND size_id=17 AND color_id=5));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='987456'),
+( SELECT id FROM variants WHERE product_id=4 AND size_id=17 AND color_id=6));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='554102'),
+( SELECT id FROM variants WHERE product_id=4 AND size_id=17 AND color_id=6));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='987456'),
+( SELECT id FROM variants WHERE product_id=5 AND size_id=1 AND color_id=6));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='987456'),
+( SELECT id FROM variants WHERE product_id=5 AND size_id=2 AND color_id=6));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='987456'),
+( SELECT id FROM variants WHERE product_id=5 AND size_id=3 AND color_id=6));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='560037'),
+( SELECT id FROM variants WHERE product_id=5 AND size_id=3 AND color_id=6));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='560037'),
+( SELECT id FROM variants WHERE product_id=5 AND size_id=2 AND color_id=6));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='676869'),
+( SELECT id FROM variants WHERE product_id=5 AND size_id=2 AND color_id=6));
+
+
+INSERT INTO inventory(createdat,isdeleted,updatedat,quantity,store_id,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,10,
+( SELECT id FROM store WHERE pincode='676869'),
+( SELECT id FROM variants WHERE product_id=5 AND size_id=1 AND color_id=6));
+
+
+27. Image:
+
+INSERT INTO image(createdat,isdeleted,updatedat,path,heirarchy,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'"D:\6Degree\image\tee shirt.jpg"',1,
+( SELECT id FROM variants WHERE product_id=1 AND size_id=3 AND color_id=1));
+
+
+INSERT INTO image(createdat,isdeleted,updatedat,path,heirarchy,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,’"D:\6Degree\image\phone.jpg"’,1,
+( SELECT id FROM variants WHERE product_id=2 AND size_id=6 AND color_id=7));
+
+
+INSERT INTO image(createdat,isdeleted,updatedat,path,heirarchy,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP, ‘"D:\6Degree\image\shoe3.jpg"’,1,
+( SELECT id FROM variants WHERE product_id=3 AND size_id=13 AND color_id=8));
+
+
+INSERT INTO image(createdat,isdeleted,updatedat,path,heirarchy,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'"D:\6Degree\image\saree4.webp"',1,
+( SELECT id FROM variants WHERE product_id=4 AND size_id=17 AND color_id=5));
+
+
+INSERT INTO image(createdat,isdeleted,updatedat,path,heirarchy,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'"D:\6Degree\image\kurti5.jpg"',1,
+( SELECT id FROM variants WHERE product_id=5 AND size_id=1 AND color_id=6));
+
+
+INSERT INTO image(createdat,isdeleted,updatedat,path,heirarchy,variants_id)
+VALUES( UTC_TIMESTAMP,0,UTC_TIMESTAMP,'"D:\6Degree\image\kurti.webp"',2,
+( SELECT id FROM variants WHERE product_id=5 AND size_id=1 AND color_id=6));

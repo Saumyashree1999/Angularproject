@@ -1,0 +1,113 @@
+<body>
+    <div class="container">
+
+        <form action="" class="form" id="form" [formGroup]="signupForm" (ngSubmit)="signup()">
+            <h2>Designer Signup</h2>
+            <div class="form-control">
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" />
+                <div class="error-message" *ngIf="signupForm.get('name').touched && signupForm.get('name').errors">
+                    <div *ngIf="signupForm.get('name').hasError('required')">Name is required.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="email" formControlName="email" />
+                <div class="error-message" *ngIf="signupForm.get('email').touched && signupForm.get('email').errors">
+                    <div *ngIf="signupForm.get('email').hasError('required')">Email is required.</div>
+                    <div *ngIf="signupForm.get('email').hasError('email')">Invalid email format.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="mobilenumber">Mobile</label>
+                <input type="number" formControlName="mobilenumber" />
+                <div class="error-message"
+                    *ngIf="signupForm.get('mobilenumber').touched && signupForm.get('mobilenumber').errors">
+                    <div *ngIf="signupForm.get('mobilenumber').hasError('required')">Mobile number is required.
+                    </div>
+                    <div *ngIf="signupForm.get('mobilenumber').hasError('pattern')">Mobile number must start with 7, 8, or 9.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" />
+                <div class="error-message"
+                    *ngIf="signupForm.get('password').touched && signupForm.get('password').errors">
+                    <div *ngIf="signupForm.get('password').hasError('required')">Password is required.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="password">Confirm Password</label>
+                <input type="password" (change)="passwordMatchValidator()" formControlName="confirmpassword" />
+                <div class="error-message" *ngIf="signupForm.get('confirmpassword').touched && signupForm.get('confirmpassword').errors">
+                    <div *ngIf="signupForm.get('confirmpassword').hasError('required')">Confirm password is required.</div>
+                </div>
+                <div class="error-message" *ngIf="passwordMisMatch">Passwords do not match.</div>
+            </div>
+            <div class="form-control">
+                <label for="addressline1">Addressline1</label>
+                <input type="text" formControlName="addressline1" />
+                <div class="error-message"
+                    *ngIf="signupForm.get('addressline1').touched && signupForm.get('addressline1').errors">
+                    <div *ngIf="signupForm.get('addressline1').hasError('required')">Addressline1 is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="addressline2">Addressline2</label>
+                <input type="text" formControlName="addressline2" />
+                <div class="error-message"
+                    *ngIf="signupForm.get('addressline2').touched && signupForm.get('addressline2').errors">
+                    <div *ngIf="signupForm.get('addressline2').hasError('required')">Addressline2 is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="landmark">Landmark</label>
+                <input type="text" formControlName="landmark" />
+                <div class="error-message"
+                    *ngIf="signupForm.get('landmark').touched && signupForm.get('landmark').errors">
+                    <div *ngIf="signupForm.get('landmark').hasError('required')">Landmark is required.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="city">City</label>
+                <input type="text" formControlName="city" />
+                <div class="error-message"
+                    *ngIf="signupForm.get('city').touched && signupForm.get('city').errors">
+                    <div *ngIf="signupForm.get('city').hasError('required')">City is required.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="state">State</label>
+                <input type="text" formControlName="state" />
+                <div class="error-message"
+                    *ngIf="signupForm.get('state').touched && signupForm.get('state').errors">
+                    <div *ngIf="signupForm.get('state').hasError('required')">State is required.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="country">Country</label>
+                <input type="text" formControlName="country" />
+                <div class="error-message"
+                   *ngIf="signupForm.get('country').touched && signupForm.get('country').errors">
+                    <div *ngIf="signupForm.get('country').hasError('required')">Country is required.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="pincode">Pincode</label>
+                <input type="number" formControlName="pincode" />
+                <div class="error-message"
+                   *ngIf="signupForm.get('pincode').touched && signupForm.get('pincode').errors">
+                   <div *ngIf="signupForm.get('pincode').hasError('required')">Pincode is required.</div>
+                </div>
+            </div>
+            <button type="submit" [disabled]="signupForm.invalid">Signup</button>
+            <!-- <div class="error-message" *ngIf="errorMessage"></div> -->
+            <!-- <div class="success-message" *ngIf="successMessage"></div>  -->
+        </form>
+        <div class="member">
+            Already have an account?<a [routerLink]="['/login']"> Login here</a>
+        </div>
+    </div>
+</body>

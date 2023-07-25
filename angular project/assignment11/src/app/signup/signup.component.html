@@ -1,0 +1,54 @@
+<body><div class="container">
+        
+    <form action="" class="form" id="form">
+       <h2>Signup</h2>
+        <div class="form-control">
+           <label for="name">Name</label>
+           <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" id="name" placeholder="Enter name" required>       
+        </div>
+        <div class="form-control">
+           <label for="email">Email</label>
+           <input type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" id="email" placeholder="Enter email" required>
+        </div>
+        <div class="form-control">
+           <label for="password">Password</label>
+           <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" id="password" placeholder="Enter password" required>
+        </div>
+        <div class="form-control">
+           <label for="mobilenumber">Mobile</label>
+           <input type="text" [(ngModel)]="mobilenumber" [ngModelOptions]="{standalone: true}" id="mobilenumber" placeholder="Enter MobileNumber" required>
+        </div>
+        <div class="form-control">
+           <label for="addressline1">Addressline1</label>
+           <input type="text" [(ngModel)]="addressline1" [ngModelOptions]="{standalone: true}" id="addressline1" placeholder="Enter Addressline1" required>
+        </div>
+        <div class="form-control">
+           <label for="addressline2">Addressline2</label>
+           <input type="text" [(ngModel)]="addressline2" [ngModelOptions]="{standalone: true}" id="addressline2" placeholder="Enter Addressline2" required>
+        </div>
+        <div class="form-control">
+           <label for="landmark">Landmark</label>
+           <input type="text" [(ngModel)]="landmark" [ngModelOptions]="{standalone: true}" id="landmark" placeholder="Enter Landmark" required>
+        </div>
+        <div class="form-control">
+           <label for="city">City</label>
+           <input type="text" [(ngModel)]="city" [ngModelOptions]="{standalone: true}" id="city" placeholder="Enter City" required>
+        </div>
+        <div class="form-control">
+           <label for="state">State</label>
+           <input type="text" [(ngModel)]="state" [ngModelOptions]="{standalone: true}" id="state" placeholder="Enter State" required>
+        </div>
+        <div class="form-control">
+            <label for="country">Country</label>
+            <input type="text" [(ngModel)]="country" [ngModelOptions]="{standalone: true}" id="country" placeholder="Enter Country" required>
+         </div>
+         <div class="form-control">
+            <label for="pincode">Pincode</label>
+            <input type="text" [(ngModel)]="pincode" [ngModelOptions]="{standalone: true}" id="pincode" placeholder="Enter Pincode" required>
+         </div>
+          <button type="submit" (click)="save()">Submit</button>
+    </form>
+</div>
+</body>
+
+

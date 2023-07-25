@@ -1,0 +1,111 @@
+:root{
+  --success-color:#23cc71;
+  --error-color:#e74c3c;
+}
+*{
+  box-sizing: border-box;
+}
+.container{
+  border-radius: 30px;
+  box-shadow: 10px;
+}
+form{
+  background-color: #fff;
+  background-color: rgb(38, 97, 100);
+  justify-content: center;
+}
+h2{
+  text-align: center;
+  /* margin: 0 0 30px; */
+  color: aliceblue;
+  padding-top: 15px;
+}
+.form{
+  padding: 30px 40px;
+}
+.form-control{
+  margin: 10px 20px;
+  position: relative;
+  padding: 10px 0;
+}
+.form-control label{
+  /* display: block; */
+  color: #fff;
+}
+.form-control input{
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  padding: 2px;
+}
+.form-control input:focus{
+  outline: 0;
+  border-color: #777;
+  
+}
+
+.member{
+  font-size: 0.8rem;
+  color: black;
+  padding-left: 100px;
+  padding-bottom: 60px;
+}
+.member1{
+  font-size: 0.8rem;
+  color: #150f0f;
+  padding-bottom: 60px;
+}
+.member a{
+  color: rgb(186, 193, 196);
+  text-decoration: none;
+}
+
+.anchor{
+  color: #3d3a3a;
+  text-decoration: none;
+  
+}
+.error-message{
+  color: red;
+}
+
+.btn {  
+  display: flex;
+  padding-top: 10px 0;
+  justify-content: space-between;
+  padding: 0 20px;
+  padding-bottom: 10px;
+  
+}
+button{
+  width: 100%;
+  cursor: pointer;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #28b8df;
+  border: none;
+  font-size: large;
+}
+
+
+.logo{
+  height: 35px;
+  width: 35px;
+  margin: 15px 15px;
+}
+.header{
+  display: flex;
+  margin: 0 60px;
+}
+
+.close{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  cursor: pointer;
+  color: #d62c73;
+  font-size: 40px;
+}

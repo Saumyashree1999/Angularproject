@@ -1,0 +1,41 @@
+<body>
+    <div class="container">
+
+        <form action="" class="form" id="form" [formGroup]="loginForm" (ngSubmit)="login()">
+            <h2>Customer Login</h2>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="email" formControlName="email" />
+                <div class="error-message" *ngIf="loginForm.get('email').touched && loginForm.get('email').errors">
+                    <div *ngIf="loginForm.get('email').hasError('required')">Email is required.</div>
+                    <div *ngIf="loginForm.get('email').hasError('email')">Invalid email format.</div>
+                </div>
+            </div>
+           
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" />
+                <div class="error-message"
+                    *ngIf="loginForm.get('password').touched && loginForm.get('password').errors">
+                    <div *ngIf="loginForm.get('password').hasError('required')">Password is required.</div>
+                </div>
+            </div>
+                <div class="form-control">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" (change)="passwordMatchValidator()" formControlName="confirmpassword" />
+                    <div class="error-message" 
+                    *ngIf="loginForm.get('confirmpassword').touched && loginForm.get('confirmpassword').errors">
+                    <div *ngIf="loginForm.get('confirmpassword').hasError('required')">Confirm password is required.</div>
+                </div>
+                <div class="error-message" *ngIf="passwordMisMatch">Passwords do not match.</div>
+            </div>
+            <button type="submit" [disabled]="loginForm.invalid">Signup</button>
+            <!-- <div class="error-message" *ngIf="errorMessage"></div> -->
+            <!-- <div class="success-message" *ngIf="successMessage"></div>  -->
+        </form>
+        <div class="member">
+            Don't have an account?<a [routerLink]="['/signup']"> Signup here</a>
+          </div>
+    </div>
+</body>
+

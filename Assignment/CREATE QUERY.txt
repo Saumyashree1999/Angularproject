@@ -1,0 +1,364 @@
+1.	Designer:
+
+CREATE TABLE designer (
+ id BIGINT NOT NULL AUTO_INCREMENT,
+ createdat DATETIME NULL,
+ isdeleted INT NULL,
+ updatedat DATETIME NULL,
+ name VARCHAR(45) NULL,
+ email VARCHAR(45) NULL,
+ password VARCHAR(45) NULL,
+ mobilenumber VARCHAR(45) NULL,
+ addressline1 VARCHAR(255) NULL,
+ addressline2 VARCHAR(255) NULL,
+ landmark VARCHAR(45) NULL,
+ city VARCHAR(45) NULL,
+ state VARCHAR(45) NULL,
+ country VARCHAR(45) NULL,
+ pincode VARCHAR(45) NULL,
+ PRIMARY KEY (id));
+
+2.	Store:
+
+CREATE TABLE store (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  description TEXT NULL,
+  addressline1 VARCHAR(45) NULL,
+  addressline2 VARCHAR(45) NULL,
+  landmark VARCHAR(45) NULL,
+  city VARCHAR(45) NULL,
+  state VARCHAR(45) NULL,
+  country VARCHAR(45) NULL,
+  pincode VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+
+3.	Brand:
+
+CREATE TABLE brand (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  logo VARCHAR(45) NULL,
+  description TEXT NULL,
+  designer_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX brandindex (designer_id));
+
+
+  
+4.	Store brand:
+
+CREATE TABLE storebrand (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  brand_id BIGINT NOT NULL,
+  store_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX storebrandindex (brand_id,store_id));
+
+5.	Designation:
+
+CREATE TABLE designation (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+6.	Employee:
+
+CREATE TABLE employee (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  email VARCHAR(45) NULL,
+  mobilenumber VARCHAR(45) NULL,
+  salary BIGINT NULL,
+  address VARCHAR(45) NULL,
+  store_id BIGINT NOT NULL,
+  designation_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX employeeindex (store_id,designation_id));
+
+7.	Customer:
+
+CREATE TABLE customer (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updated DATETIME NULL,
+  fullname VARCHAR(45) NULL,
+  email VARCHAR(45) NULL,
+  password VARCHAR(45) NULL,
+  mobileno VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+8.	Customer address:
+
+CREATE TABLE customeraddress (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  addressline1 VARCHAR(45) NULL,
+  addressline2 VARCHAR(45) NULL,
+  landmark VARCHAR(45) NULL,
+  city VARCHAR(45) NULL,
+  state VARCHAR(45) NULL,
+  country VARCHAR(45) NULL,
+  pincode VARCHAR(45) NULL,
+  isdefault INT NULL,
+  customer_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX addressindex (customer_id));
+
+9.	Material:
+
+CREATE TABLE material (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+10.	Category:
+
+CREATE TABLE category (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+11.	Color:
+
+CREATE TABLE color (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  hexcode VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+12.	Size:
+
+CREATE TABLE size (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  size VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+13.	Washcare:
+
+CREATE TABLE washcare (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  type VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+14.	Weight type:
+
+CREATE TABLE weighttype (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+15.	Product type:
+
+CREATE TABLE producttype (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+16.	Subtype:
+
+CREATE TABLE subtype (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  producttype_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX subtypeindex (producttype_id));
+
+17.	Product:
+
+CREATE TABLE product (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  description VARCHAR(500) NULL,
+  productnumber VARCHAR(45) NULL,
+  subtype_id BIGINT NOT NULL,
+  material_id BIGINT NOT NULL,
+  washcare_id BIGINT NOT NULL,
+  category_id BIGINT NOT NULL,
+  store_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX productindex (subtype_id,material_id,category_id,store_id));
+
+
+18.	Variants:
+
+CREATE TABLE variants (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  mrp DECIMAL NULL,
+  sellingprice DECIMAL NULL,
+  product_id BIGINT NOT NULL,
+  size_id BIGINT NOT NULL,
+  color_id BIGINT NOT NULL,
+  washcare_id BIGINT NOT NULL,
+  weighttype_id BIGINT NOT NULL,
+  weight DECIMAL NULL,
+  PRIMARY KEY (id),
+  INDEX variantsindex (product_id,size_id,color_id,washcare_id,weighttype_id));
+
+19. Image:
+
+CREATE TABLE image (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  path VARCHAR(45) NULL,
+  heirarchy INT NULL,
+  variants_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX imageindex (variants_id));
+
+20.	Payment details:
+
+CREATE TABLE paymentdetails (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  mode VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+21.	Order:
+
+CREATE TABLE order (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  totalprice DECIMAL NULL,
+  ordernumber VARCHAR(45) NULL,
+  customeraddress_id BIGINT NOT NULL,
+  paymentdetails_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX orderindex (customeraddress_id,paymentdetails_id));
+
+22.	Order details:
+
+CREATE TABLE orderdetails (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  quantity BIGINT NULL,
+  expecteddeliverydate DATETIME NULL,
+  orders_id BIGINT NOT NULL,
+  variants_id BIGINT NOT NULL,
+  totalprice DECIMAL NULL,
+  store_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX orderindex (orders_id,variants_id,store_id));
+
+
+23.	Status:
+
+CREATE TABLE status (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  name VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+24.	Shipment:
+
+CREATE TABLE shipment (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  orderdetails_id BIGINT NOT NULL,
+  status_id BIGINT NOT NULL,
+  logisticpartner VARCHAR(45) NULL,
+  PRIMARY KEY (id),
+  INDEX shipmentindex (orderdetails_id,status_id));
+
+25.	Rating and review:
+
+CREATE TABLE ratingsandreviews (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  rating DECIMAL NULL,
+  comment VARCHAR(45) NULL,
+  orderdetails_id BIGINT NOT NULL,
+  customer_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX ratingindex (orderdetails_id,customer_id));
+
+26.	Cart:
+
+CREATE TABLE cart (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  quantity INT NULL,
+  customer_id BIGINT NOT NULL,
+  variants_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX cartindex (customer_id,variants_id));
+
+27.	Inventory:
+
+CREATE TABLE inventory (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  createdat DATETIME NULL,
+  isdeleted INT NULL,
+  updatedat DATETIME NULL,
+  quantity VARCHAR(45) NULL,
+  store_id BIGINT NOT NULL,
+  variants_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX inventoryindex (store_id,variants_id));
+

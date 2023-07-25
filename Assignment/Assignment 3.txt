@@ -1,0 +1,390 @@
+1. Write a query to get all products based on designer and store? 
+
+
+SELECT vari.* , siz.size as size , col.name as color , weight.name as weighttype , prod.name AS NAME , 
+prod.description AS DESCRIPTION , prod.productnumber as productnumber , sub.name AS subtypename , 
+mat.name AS material , cat.name AS category , wash.type AS washcare , brnd.name AS brand , str.name AS storename , design.name AS designer
+FROM variants vari 
+JOIN inventory inven ON ( inven.isdeleted = 0 AND inven.variants_id = vari.id )
+JOIN store str ON ( str.isdeleted = 0 AND inven.store_id = str.id )
+JOIN size siz ON (siz.isdeleted = 0 AND vari.size_id = siz.id) 
+JOIN color col ON (col.isdeleted = 0 AND vari.color_id = col.id) 
+JOIN weighttype weight ON (weight.isdeleted = 0 AND vari.weighttype_id = weight.id )
+JOIN product prod ON (prod.isdeleted = 0 AND vari.product_id = prod.id )
+JOIN subtype sub ON ( sub.isdeleted = 0 AND prod.subtype_id = sub.id )
+JOIN material mat ON ( mat.isdeleted = 0 AND prod.material_id = mat.id )
+JOIN category cat ON ( cat.isdeleted = 0 AND prod.category_id = cat.id )
+JOIN washcare wash ON ( wash.isdeleted = 0 AND prod.washcare_id = wash.id )
+JOIN brand brnd ON ( brnd.isdeleted = 0 AND prod.brand_id = brnd.id )
+JOIN designer design ON ( design.isdeleted = 0 AND design.id = brnd.designer_id )
+WHERE str.id = 4 AND design.id = 4 AND vari.isdeleted = 0 ;
+ 
+
+2. Write a query to find order details that order details contains customername, orderid, orderdetailsid, totalprice, variant details, quantity, address and payment details based on designerid?
+
+
+SELECT odetail.* , ordr.ordernumber AS orderno ,  prod.name , siz.size AS size , col.name AS color , weight.name AS weighttype , 
+mat.name AS material , wash.type AS washcare , cat.name AS category , cust.fullname AS customername , caddress.addressline1 AS addressline1 , 
+caddress.addressline2 AS addressline2 , caddress.landmark AS landmark, caddress.city AS city , caddress.state AS state , caddress.country AS country , 
+caddress.pincode AS pincode , payment.createdat AS paymenttime , payment.mode AS paymenttype 
+FROM orderdetails odetail
+JOIN orders ordr ON ( ordr.isdeleted = 0 AND odetail.orders_id = ordr.id )
+JOIN customeraddress caddress ON ( caddress.isdeleted = 0 AND ordr.customeraddress_id = caddress.id )
+JOIN customer cust ON ( cust.isdeleted = 0 AND caddress.customer_id = cust.id )
+JOIN variants vari ON ( vari.isdeleted = 0 AND odetail.variants_id = vari.id )
+JOIN product prod ON (prod.isdeleted = 0 AND vari.product_id = prod.id )
+JOIN size siz ON (siz.isdeleted = 0 AND vari.size_id = siz.id) 
+JOIN color col ON (col.isdeleted = 0 AND vari.color_id = col.id) 
+JOIN weighttype weight ON (weight.isdeleted = 0 AND vari.weighttype_id = weight.id )
+JOIN subtype sub ON ( sub.isdeleted = 0 AND prod.subtype_id = sub.id )
+JOIN material mat ON ( mat.isdeleted = 0 AND prod.material_id = mat.id )
+JOIN category cat ON ( cat.isdeleted = 0 AND prod.category_id = cat.id )
+JOIN washcare wash ON ( wash.isdeleted = 0 AND prod.washcare_id = wash.id )
+JOIN brand brnd ON ( brnd.isdeleted = 0 AND prod.brand_id = brnd.id )
+JOIN designer design ON ( design.isdeleted = 0 AND design.id = brnd.designer_id )
+JOIN paymentdetails payment ON ( payment.isdeleted = 0 AND payment.id = ordr.paymentdetails_id )
+WHERE design.id = 2 AND odetail.isdeleted = 0 ;
+
+
+3. Write a query to fetch the delivered orders of customer with corresponding order id ?
+
+
+SELECT odetail.* , cust.fullname AS customer , prod.name AS productname , siz.size AS size , col.name AS color , cat.name AS category , brnd.name AS brand , ship.createdat AS delivereddate
+FROM orderdetails odetail
+JOIN variants vari ON ( vari.isdeleted = 0 AND  odetail.variants_id = vari.id )
+JOIN size siz ON (siz.isdeleted = 0 AND vari.size_id = siz.id) 
+JOIN color col ON (col.isdeleted = 0 AND vari.color_id = col.id) 
+JOIN product prod ON (prod.isdeleted = 0 AND vari.product_id = prod.id )
+JOIN category cat ON ( cat.isdeleted = 0 AND prod.category_id = cat.id )
+JOIN brand brnd ON ( brnd.isdeleted = 0 AND prod.brand_id = brnd.id )
+JOIN orders ordr ON ( ordr.isdeleted = 0 AND odetail.orders_id = ordr.id )
+JOIN shipment ship ON ( ship.isdeleted = 0 AND ship.orderdetails_id = odetail.id )
+JOIN status sts ON ( sts.isdeleted = 0 AND ship.status_id = sts.id )
+JOIN customeraddress caddress ON ( caddress.isdeleted = 0 AND ordr.customeraddress_id = caddress.id )
+JOIN customer cust ON ( caddress.customer_id = cust.id )
+WHERE ordr.id = 5 AND sts.name = 'delivered' AND odetail.isdeleted = 0 ;
+
+
+
+4. Which customer has most orders ?
+
+SELECT cust.fullname AS customername , COUNT(*) AS totalorder  
+FROM orders ordr , customeraddress caddress , customer cust 
+WHERE ( ordr.customeraddress_id = caddress.id ) AND ( caddress.customer_id = cust.id ) AND ordr.isdeleted = 0 AND caddress.isdeleted = 0 AND cust.isdeleted = 0 
+GROUP BY cust.fullname
+ORDER BY COUNT(*) DESC 
+LIMIT 1  ;
+
+
+5. What is the most selling product ?
+
+SELECT prod.name AS productname , COUNT(*)
+FROM product prod
+JOIN variants vari ON ( vari.isdeleted = 0 AND vari.product_id = prod.id )
+JOIN orderdetails odetail ON ( odetail.isdeleted = 0 AND odetail.variants_id = vari.id )
+WHERE prod.isdeleted = 0 
+GROUP BY prod.name 
+ORDER BY COUNT(*) DESC 
+LIMIT 1 ;
+
+
+6. Write a query to fetch all the customers who has more than 2 products in their cart ?
+
+
+SELECT cust.id AS customerid , cust.fullname AS NAME , COUNT(*) AS totalvariant
+FROM customer cust
+JOIN cart car ON ( car.isdeleted = 0 AND car.customer_id = cust.id ) 
+WHERE cust.isdeleted = 0 
+GROUP BY car.customer_id
+HAVING COUNT(*)>2 ;
+
+
+7. Write a query to fetch all the product details which are colour blue and size L ?
+
+SELECT vari.* , siz.size as size , col.name as color , weight.name as weighttype , prod.name AS NAME , 
+prod.description AS DESCRIPTION , prod.productnumber as productnumber , sub.name AS subtypename , 
+mat.name AS material , cat.name AS category , wash.type AS washcare , brnd.name AS brand
+FROM variants vari
+JOIN size siz ON (siz.isdeleted = 0 AND vari.size_id = siz.id) 
+JOIN color col ON (col.isdeleted = 0 AND vari.color_id = col.id) 
+JOIN weighttype weight ON (weight.isdeleted = 0 AND vari.weighttype_id = weight.id )
+JOIN product prod ON (prod.isdeleted = 0 AND vari.product_id = prod.id )
+JOIN subtype sub ON ( sub.isdeleted = 0 AND prod.subtype_id = sub.id )
+JOIN material mat ON ( mat.isdeleted = 0 AND prod.material_id = mat.id )
+JOIN category cat ON ( cat.isdeleted = 0 AND prod.category_id = cat.id )
+JOIN washcare wash ON ( wash.isdeleted = 0 AND prod.washcare_id = wash.id )
+JOIN brand brnd ON ( brnd.isdeleted = 0 AND prod.brand_id = brnd.id )
+WHERE siz.size='L' AND col.name='blue' AND vari.isdeleted = 0 ;
+
+
+
+8. Write a Query to fetch customer Details for Designer?
+
+SELECT DISTINCT cust.* , caddress.addressline1 , 
+caddress.addressline2 , caddress.landmark , caddress.city , caddress.state , caddress.country , caddress.pincode
+FROM customer cust
+JOIN customeraddress caddress ON (caddress.isdeleted=0 AND caddress.customer_id = cust.id)
+JOIN orders ordr ON (ordr.isdeleted = 0 AND ordr.customeraddress_id = caddress.id)
+JOIN orderdetails odetail ON (odetail.isdeleted = 0 AND odetail.orders_id = ordr.id)
+JOIN variants vari ON (vari.isdeleted = 0 AND odetail.variants_id = vari.id)
+JOIN product prod ON (prod.isdeleted = 0 AND vari.product_id = prod.id)
+JOIN brand brnd ON (brnd.isdeleted = 0 AND prod.brand_id = brnd.id)
+JOIN designer design ON (design.isdeleted = 0 AND brnd.designer_id=design.id)
+WHERE design.id = 4 AND cust.isdeleted = 0 ;
+
+
+
+9. Write a Query to fetch product details for Designer?
+
+SELECT prod.*  , sub.name AS subtype , mat.name AS material , wash.type AS washcare , gender.name AS category , brnd.name AS brand
+FROM product prod
+JOIN brand brnd ON (brnd.isdeleted=0 AND brnd.id=prod.brand_id)
+JOIN designer design ON (design.isdeleted =0 AND design.id=brnd.designer_id)
+JOIN subtype sub ON ( sub.isdeleted = 0 AND sub.id = prod.subtype_id )
+JOIN material mat ON ( mat.isdeleted = 0 AND mat.id = prod.material_id )
+JOIN washcare wash ON ( wash.isdeleted = 0 AND wash.id = prod.washcare_id )
+JOIN category gender ON ( gender.isdeleted = 0 AND gender.id = prod.category_id )
+WHERE design.id = 5 AND prod.isdeleted = 0 ;
+
+
+10. Write a Query to fetch Order Details for customer?
+
+SELECT odetail.* , str.name AS store , prod.name AS product , siz.size AS size , col.name AS color
+FROM orderdetails odetail
+JOIN orders ordr ON (ordr.isdeleted=0 AND ordr.id=odetail.orders_id)
+JOIN customeraddress caddress ON (caddress.isdeleted =0 AND caddress.id=ordr.customeraddress_id)
+JOIN customer custmr ON (custmr.isdeleted = 0 AND custmr.id=caddress.customer_id)
+JOIN store str ON (str.isdeleted = 0 AND str.id=odetail.store_id)
+JOIN variants vari ON ( vari.isdeleted = 0 AND vari.id = odetail.variants_id )
+JOIN product prod ON ( prod.isdeleted = 0 AND prod.id = vari.product_id )
+JOIN size siz ON ( siz.isdeleted = 0 AND siz.id = vari.size_id )
+JOIN color col ON ( col.isdeleted = 0 AND col.id = vari.color_id )
+WHERE custmr.id = 1 AND odetail.isdeleted = 0 
+ORDER BY id ASC  ;
+
+
+11. Write a Query to fetch variants based on product?
+
+Query-1:
+
+SELECT vari.*, prod.name as product , siz.size AS size , col.name AS color , weight.name AS weighttype
+FROM variants vari 
+JOIN product prod ON (prod.isdeleted = 0 AND prod.id = vari.product_id) 
+JOIN size siz ON(siz.isdeleted = 0 AND siz.id = vari.size_id) 
+JOIN color col ON(col.isdeleted = 0 AND col.id = vari.color_id) 
+JOIN weighttype weight ON(weight.isdeleted = 0 AND weight.id = vari.weighttype_id) 
+WHERE prod.id=1 AND vari.isdeleted = 0 
+ORDER BY id ASC;
+
+Query-2: 
+
+SELECT vari.*, prod.name as product , siz.size AS size , col.name AS color , weight.name AS weighttype
+FROM variants vari 
+JOIN product prod ON (prod.isdeleted = 0 AND prod.id = vari.product_id) 
+JOIN size siz ON(siz.isdeleted = 0 AND siz.id = vari.size_id) 
+JOIN color col ON(col.isdeleted = 0 AND col.id = vari.color_id) 
+JOIN weighttype weight ON(weight.isdeleted = 0 AND weight.id = vari.weighttype_id) 
+WHERE prod.id=vari.product_id AND vari.isdeleted = 0 ;
+
+
+
+12. Write a Query to search a product based on name?
+
+SELECT prod.*, sub.name AS subtype , mat.name AS material , wash.type AS washcare , cat.name AS category , brnd.name AS brand
+FROM product prod 
+JOIN subtype sub ON (sub.isdeleted = 0 AND sub.id = prod.subtype_id) 
+JOIN material mat ON(mat.isdeleted = 0 AND mat.id = prod.material_id) 
+JOIN washcare wash ON(wash.isdeleted = 0 AND wash.id = prod.washcare_id) 
+JOIN category cat ON(cat.isdeleted = 0 AND cat.id = prod.category_id) 
+JOIN brand brnd ON(brnd.isdeleted = 0 AND brnd.id=prod.brand_id) 
+WHERE prod.name LIKE '%%' AND prod.isdeleted = 0 ;
+
+QUERY - 2 
+
+SELECT prod.*, sub.name AS subtype , mat.name AS material , wash.type AS washcare , cat.name AS category , brnd.name AS brand
+FROM product prod 
+JOIN subtype sub ON (sub.isdeleted = 0 AND sub.id = prod.subtype_id) 
+JOIN material mat ON(mat.isdeleted = 0 AND mat.id = prod.material_id) 
+JOIN washcare wash ON(wash.isdeleted = 0 AND wash.id = prod.washcare_id) 
+JOIN category cat ON(cat.isdeleted = 0 AND cat.id = prod.category_id) 
+JOIN brand brnd ON(brnd.isdeleted = 0 AND brnd.id=prod.brand_id) 
+WHERE prod.name LIKE '%redmi%' AND prod.isdeleted = 0 ;
+
+
+13. Write a Query to get all order Details of customer for designer?
+
+              Response :
+              Order No
+              Product No
+              Order Id
+              Product Id
+              Order Status
+              customer Details
+              Order Details (if order status is delivered then order details should be present otherwise it should be null)
+
+
+SELECT odetail.* , ordr.ordernumber AS ordernumber , prod.productnumber AS productnumber , prod.id AS productid, sts.name AS status , 
+cust.fullname as customername , cust.email AS email , cust.mobileno AS contactnumber , caddress.addressline1 , 
+caddress.addressline2 , caddress.landmark , caddress.city , caddress.state , caddress.country , caddress.pincode , 
+( Case when sts.name ='delivered' then odetail.id else null END ) AS orderdetailsid  ,
+( case when sts.name = 'delivered' then odetail.variants_id ELSE NULL END ) AS variantsid , 
+( case when sts.name = 'delivered' then ship.createdat ELSE NULL END ) AS delivered
+FROM orderdetails odetail
+JOIN orders ordr ON ( ordr.isdeleted = 0 AND odetail.orders_id = ordr.id )
+JOIN shipment ship ON ( ship.isdeleted = 0 AND ship.orderdetails_id = odetail.id )
+JOIN status sts ON ( sts.isdeleted = 0 AND ship.status_id = sts.id )
+JOIN customeraddress caddress ON ( caddress.isdeleted = 0 AND ordr.customeraddress_id = caddress.id )
+JOIN customer cust ON ( caddress.customer_id = cust.id )
+JOIN variants vari ON ( vari.isdeleted = 0 AND odetail.variants_id = vari.id )
+JOIN product prod ON (prod.isdeleted = 0 AND vari.product_id = prod.id )
+JOIN brand brnd ON ( brnd.isdeleted = 0 AND prod.brand_id = brnd.id )
+JOIN designer design ON ( design.isdeleted = 0 AND design.id = brnd.designer_id )
+WHERE design.id = 2 AND odetail.isdeleted = 0 AND odetail.isdeleted = 0 ;
+
+
+14. Write a Query to fetch Product Details based on (Store Or Designer Or Both)?
+
+
+SELECT prod.id as productid , str.id AS storeid , prod.name AS NAME , prod.description AS DESCRIPTION , siz.size as size , 
+col.name as color , weight.name as weighttype , vari.weight AS weight , prod.productnumber as productnumber , sub.name AS subtypename , 
+mat.name AS material , cat.name AS category , wash.type AS washcare , brnd.name AS brand , inven.quantity AS quantity , vari.mrp AS mrp , 
+vari.sellingprice AS sellingprice , vari.product_id AS productid , vari.size_id AS sizeid , vari.color_id AS colorid , vari.weighttype_id AS weighttypeid  
+FROM product prod 
+JOIN variants vari ON (vari.isdeleted = 0 AND vari.product_id = prod.id )
+JOIN inventory inven ON ( inven.isdeleted = 0 AND inven.variants_id = vari.id )
+JOIN store str ON ( str.isdeleted = 0 AND inven.store_id = str.id )
+JOIN size siz ON (siz.isdeleted = 0 AND vari.size_id = siz.id) 
+JOIN color col ON (col.isdeleted = 0 AND vari.color_id = col.id) 
+JOIN weighttype weight ON (weight.isdeleted = 0 AND vari.weighttype_id = weight.id )
+JOIN subtype sub ON ( sub.isdeleted = 0 AND prod.subtype_id = sub.id )
+JOIN material mat ON ( mat.isdeleted = 0 AND prod.material_id = mat.id )
+JOIN category cat ON ( cat.isdeleted = 0 AND prod.category_id = cat.id )
+JOIN washcare wash ON ( wash.isdeleted = 0 AND prod.washcare_id = wash.id )
+JOIN brand brnd ON ( brnd.isdeleted = 0 AND prod.brand_id = brnd.id )
+JOIN designer design ON ( design.isdeleted = 0 AND brnd.designer_id = design.id )
+WHERE (str.id = 1 OR design.id = 1 OR (str.id = 9 AND design.id = 1))  AND vari.isdeleted = 0 ;
+
+
+(reference : (Store.id = null OR des.id = null OR (store.id = 9 AND des.id = 1)))
+
+
+15. Write a Query to fetch ratings and reviews based on customer Or Designer? (if customer id is present but review are not present)
+
+SELECT rating.* , brnd.name AS brandname , design.name AS designer , cust.fullname AS customer
+FROM ratingsandreviews rating
+LEFT JOIN customer cust ON ( cust.isdeleted = 0 AND rating.customer_id = cust.id )
+JOIN orderdetails odetail ON ( odetail.isdeleted = 0 AND rating.orderdetails_id=odetail.id )
+JOIN variants vari ON ( vari.isdeleted = 0 AND odetail.variants_id = vari.id )
+JOIN product prod ON ( prod.isdeleted = 0 AND vari.product_id = prod.id )
+JOIN brand brnd ON ( brnd.isdeleted = 0 AND prod.brand_id = brnd.id )
+JOIN designer design ON ( design.isdeleted = 0 AND brnd.designer_id = design.id ) 
+WHERE ( cust.id = 1 OR design.id = 4 ) AND rating.isdeleted = 0 ;
+
+
+16. Write a Query to update after 5 number rows, isdeleted = 1 for Order Details table?
+
+UPDATE orderdetails 
+SET isdeleted = 1 
+WHERE id > 5 ;
+
+17. Write a Query to fetch shipment all data based on store or designer?
+
+
+SELECT ship.* , sts.name AS status , prod.name AS productname
+FROM shipment ship
+JOIN status sts ON ( sts.isdeleted = 0 AND ship.status_id = sts.id )
+JOIN orderdetails odetail ON ( odetail.isdeleted = 0  AND ship.orderdetails_id = odetail.id )
+JOIN variants vari ON ( vari.isdeleted = 0 AND odetail.variants_id = vari.id )
+JOIN inventory invent ON ( invent.isdeleted = 0 AND vari.id = invent.variants_id )
+JOIN product prod ON ( prod.isdeleted = 0 AND vari.product_id = prod.id )
+JOIN store stor ON ( stor.isdeleted = 0 AND invent.store_id = stor.id )
+JOIN brand brnd ON ( brnd.isdeleted = 0 AND prod.brand_id = brnd.id ) 
+JOIN designer design ON ( design.isdeleted = 0 AND brnd.designer_id = design.id ) 
+WHERE ( stor.id = 3 OR design.id = 1 ) AND ship.isdeleted = 0 
+ORDER BY id ASC ;
+
+18. Write a query to fetch the employees whose salary is greater than X (Raghab) and who works in store Y(sbd textile) and Brand Z(adidas) ? Put X, Y, Z according to your database?
+
+SELECT emp.* , stor.name AS storename , job.name AS designation
+FROM employee emp
+JOIN designation job ON ( job.isdeleted = 0 AND emp.designation_id = job.id )
+JOIN store stor ON ( stor.isdeleted = 0 AND emp.store_id = stor.id )
+JOIN storebrand storbrnd ON ( storbrnd.isdeleted = 0 AND stor.id = storbrnd.store_id )
+JOIN brand brnd ON ( brnd.isdeleted = 0 AND storbrnd.brand_id = brnd.id )
+WHERE emp.salary > 19000 AND brnd.name = 'adidas' AND stor.name = 'sbd textile' AND emp.isdeleted = 0 ;
+
+
+19. Write a query to fetch the list of Store address details in the standard format.(Invoice address format.)?
+
+SELECT NAME , addressline1 , addressline2 , landmark , city , state , country , pincode  FROM store ;
+
+
+20. Write a query to fetch the remaining quantity of the product which are sold?
+
+SELECT prod.id AS productid , vari.id AS variantsid , prod.name AS productname , vari.quantity - SUM(odetail.quantity) AS remaining 
+FROM product prod
+JOIN variants vari ON ( vari.isdeleted = 0 AND prod.id = vari.product_id )
+JOIN orderdetails odetail ON ( odetail.isdeleted = 0 AND vari.id = odetail.variants_id ) 
+WHERE prod.isdeleted = 0 
+GROUP BY odetail.variants_id ;
+
+
+21. Write a query to fetch the the products which are in more than 5 variants?
+
+
+SELECT prod.id as productid , prod.name AS productname , COUNT(*) AS totalvariant 
+FROM product prod
+JOIN variants vari ON ( vari.isdeleted = 0 AND vari.product_id = prod.id ) 
+WHERE prod.isdeleted = 0 
+GROUP BY vari.product_id
+HAVING COUNT(*)>5;
+
+SELECT distinct vari.id AS variantsid , prod.id AS productid , prod.name as productname , col.name AS color , siz.size  AS size , vari.quantity AS remaining 
+FROM orderdetails odetail 
+JOIN variants vari ON ( vari.isdeleted = 0 AND vari.id = odetail.variants_id ) 
+JOIN product prod ON ( prod.isdeleted = 0  AND prod.id = vari.product_id )
+JOIN size siz ON ( siz.isdeleted = 0 AND vari.size_id = siz.id ) 
+JOIN color col ON ( col.isdeleted = 0 AND vari.color_id = col.id ) ;
+
+22. Write a Query Trend of Top 5 selling variants over the past 6months?
+
+
+SELECT prod.id as productid , prod.name AS productname , COUNT(*) AS totalvariant , vari.size_id , vari.color_id , 
+vari.id AS variantid , col.name AS color , siz.size AS size , weight.name AS weighttype , vari.weight 
+FROM product prod 
+JOIN variants vari ON ( vari.isdeleted = 0 AND vari.product_id = prod.id ) 
+JOIN orderdetails odetail ON ( odetail.isdeleted = 0 AND odetail.variants_id = vari.id ) 
+JOIN size siz ON (siz.isdeleted = 0 AND vari.size_id = siz.id) 
+JOIN color col ON (col.isdeleted = 0 AND vari.color_id = col.id) 
+JOIN weighttype weight ON (weight.isdeleted = 0 AND vari.weighttype_id = weight.id )
+WHERE prod.isdeleted = 0 and odetail.createdat >= '2022-11-28 01:29:25' AND odetail.createdat <= '2023-05-09 05:58:59'
+GROUP BY odetail.variants_id 
+ORDER BY COUNT(*) DESC
+LIMIT 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

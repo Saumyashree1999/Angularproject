@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="container">
+        
+        <form action="" class="form" id="form" method="post">
+           <h2>Signup</h2>
+            <div class="form-control">
+               <label for="name">Name</label>
+               <input type="text" id="name" placeholder="Enter name" required>
+               <span id="nameError" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="email">Email</label>
+               <input type="text" id="email" placeholder="Enter email" required>
+               <span id="emailError" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="password">Password</label>
+               <input type="password" id="password" placeholder="Enter password" required>
+               <span id="passwordError1" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="password2">Confirm Password</label>
+               <input type="password" id="password2" placeholder="Enter Confirm password" required>
+               <span id="passwordError2" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="mobilenumber">Mobile</label>
+               <input type="text" id="mobilenumber" placeholder="Enter MobileNumber" required>
+               <span id="mobileError" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="addressline1">Addressline1</label>
+               <input type="text" id="addressline1" placeholder="Enter Addressline1" required>
+               <span id="addressline1Error" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="addressline2">Addressline2</label>
+               <input type="text" id="addressline2" placeholder="Enter Addressline2" required>
+               <span id="addressline2Error" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="landmark">Landmark</label>
+               <input type="text" id="landmark" placeholder="Enter Landmark" required>
+               <span id="landmarkError" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="city">City</label>
+               <input type="text" id="city" placeholder="Enter City" required>
+               <span id="cityError" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="state">State</label>
+               <input type="text" id="state" placeholder="Enter State" required>
+               <span id="stateError" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="country">Country</label>
+               <input type="text" id="country" placeholder="Enter Country" required>
+               <span id="countryError" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+            <div class="form-control">
+               <label for="pincode">Pincode</label>
+               <input type="text" id="pincode" placeholder="Enter Pincode" required>
+               <span id="pincodeError" style="color: red;"></span>
+               <small>Error Message</small>
+            </div>
+             <button type="submit">Submit</button>
+        </form>
+        <p id="message"></p> 
+        <div class="member">
+          Already have an account?<a href="login.html"> Login here</a>
+        </div>
+    </div>
+    <script src="signupjs.js"></script>
+</body>
+</html>

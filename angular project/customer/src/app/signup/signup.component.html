@@ -1,0 +1,56 @@
+<body>
+    <div class="container">
+
+        <form action="" class="form" id="form" [formGroup]="signupForm" (ngSubmit)="signup()">
+            <h2>Customer Signup</h2>
+            <div class="form-control">
+                <label for="fullname">FullName:</label>
+                <input type="text" formControlName="fullname" />
+                <div class="error-message" *ngIf="signupForm.get('fullname').touched && signupForm.get('fullname').errors">
+                <div *ngIf="signupForm.get('fullname').hasError('required')">Name is required.</div>
+            </div>
+            </div>
+
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="email" formControlName="email" />
+                <div class="error-message" *ngIf="signupForm.get('email').touched && signupForm.get('email').errors">
+                    <div *ngIf="signupForm.get('email').hasError('required')">Email is required.</div>
+                    <div *ngIf="signupForm.get('email').hasError('email')">Invalid email format.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="mobileno">Mobile</label>
+                <input type="number" formControlName="mobileno" />
+                <div class="error-message"
+                    *ngIf="signupForm.get('mobileno').touched && signupForm.get('mobileno').errors">
+                    <div *ngIf="signupForm.get('mobileno').hasError('required')">Enter valid number.
+                    </div>
+                    <div *ngIf="signupForm.get('mobileno').hasError('pattern')">Mobile number must have 10 digits.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" />
+                <div class="error-message"
+                    *ngIf="signupForm.get('password').touched && signupForm.get('password').errors">
+                    <div *ngIf="signupForm.get('password').hasError('required')">Password is required.</div>
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="password">Confirm Password</label>
+                <input type="password" (change)="passwordMatchValidator()" formControlName="confirmpassword" />
+                <div class="error-message" *ngIf="signupForm.get('confirmpassword').touched && signupForm.get('confirmpassword').errors">
+                   <div *ngIf="signupForm.get('confirmpassword').hasError('required')">Confirm password is required.</div>
+                </div>
+                <div class="error-message" *ngIf="passwordMisMatch">Passwords do not match.</div>
+            </div>
+            <button type="submit" [disabled]="signupForm.invalid">Signup</button>
+            <!-- <div class="error-message" *ngIf="errorMessage"></div> -->
+            <!-- <div class="success-message" *ngIf="successMessage"></div>  -->
+        </form>
+        <div class="member">
+        Already have an account?<a [routerLink]="['/login']"> Login here</a>
+        </div>
+    </div>
+</body>

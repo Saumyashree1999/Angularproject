@@ -1,0 +1,46 @@
+<div class="popup-page" *ngIf="showPopup">
+        
+    <form [formGroup]="popupForm" (ngSubmit)="onSubmit()">
+        <div class="header">
+            <h2>Welcome to You&Me Shop</h2>
+        <img class="logo" src="./../../assets/you&me.jpg" alt="">
+
+        </div>
+        
+        <div class="form-control">
+            <label for="name">Name:</label>
+            <input type="text" formControlName="name" required>
+            <div class="error-message" *ngIf="popupForm.get('name').touched && popupForm.get('name').errors" >
+            <div *ngIf="popupForm.get('name').hasError('required')">Name is required.</div>
+            <div *ngIf="popupForm.get('name').hasError('pattern')">Enter valid name</div>
+        </div>
+        </div>
+
+        <div class="form-control">
+            <label for="email">Email</label>
+            <input type="email" formControlName="email" required>
+            <div class="error-message" *ngIf="popupForm.get('email').touched && popupForm.get('email').errors">
+                <div *ngIf="popupForm.get('email').hasError('required')">Email is required.</div>
+                <div *ngIf="popupForm.get('email').hasError('email')">Invalid email format.</div>
+            </div>
+        </div>
+        <div class="form-control">
+            <label for="mobilenumber">MobileNumber</label>
+            <input type="number" formControlName="mobilenumber" required>
+            <div class="error-message"
+                *ngIf="popupForm.get('mobilenumber').touched && popupForm.get('mobilenumber').errors">
+                <div *ngIf="popupForm.get('mobilenumber').hasError('required')">Enter valid number.
+                </div>
+                <div *ngIf="popupForm.get('mobilenumber').hasError('pattern')">Mobile number must have 10 digits.</div>
+            </div>
+        </div>
+        <div class="buttom">
+          <button class="subscribe-button" type="submit" [disabled]="popupForm.invalid">Subscribe</button>
+          <button class="close-button" (click)="closePopup()">Close</button>
+
+        </div>
+        
+        <!-- <div class="error-message" *ngIf="errorMessage"></div> -->
+        <!-- <div class="success-message" *ngIf="successMessage"></div>  -->
+    </form>
+</div>

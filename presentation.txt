@@ -1,0 +1,5 @@
+why class not found exception?
+
+obj of statement interface is required to perform db operation from java program.
+
+why insert give true and other give false for execute query.
