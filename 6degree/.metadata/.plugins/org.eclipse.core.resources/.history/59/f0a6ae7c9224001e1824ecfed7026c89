@@ -1,0 +1,168 @@
+package com.saumya.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
+import org.springframework.core.io.FileSystemResource;
+
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+
+import com.saumya.demo.dto.Base;
+import com.saumya.demo.entity.Subscriber;
+import com.saumya.demo.repository.SubscriberRepository;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+@Service
+public class SubscriberServiceImpl implements SubscriberService {
+
+	@Autowired
+	private JavaMailSender javaMailSender;
+
+	@Value("${spring.mail.username}")
+	private String sender;
+
+	@Autowired
+	private SubscriberRepository subscriberRepository;
+
+	@Override
+	public Subscriber save(Base base) throws Throwable {
+
+		Subscriber subscriber = new Subscriber();
+		subscriber.setName(base.getName());
+		subscriber.setEmail(base.getEmail());
+		subscriber.setMobilenumber(base.getMobilenumber());
+
+		subscriberRepository.save(subscriber);
+		sendMailToSubscriber(base);
+		sendMailToAuthor(base);
+
+		return subscriber;
+	}
+
+//-----------------------------------------------------------
+	@Override
+	public String sendMailToSubscriber(Base base)  {
+		String fullname = base.getName();
+		MimeMessage message = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper;
+		try {
+			helper = new MimeMessageHelper(message, true);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+//		String mailSubject = fullname + " has sent a message";
+//		String mailContent = "<p><b>Sender Name:</b>" + fullname + "</p>";
+//		mailContent += "<p><b>Sender email:</b>" + email + "</p>";
+//		mailContent += "<p><b>Subject:</b>" + subject + "</p>";
+////		mailContent += "<p><b>Sender email:</b>" + email + "</p>";
+//		mailContent += "<hr><img src= 'cid:logo' />";
+
+		String mailSubject = " Welcome to Our Exclusive Community!";
+		String mailContent = "<html><body><div style=\"border: 2px ridge deeppink; padding: 10px;\">";
+		mailContent += "<p><b>Dear  " + fullname + " ," + "</b></p>";
+		mailContent += "<p>Thank you for subscribing <b>You&Me Shop!!</b> and becoming a part of our exclusive community of savvy shoppers! We are thrilled to have you on board and are excited to provide you with an exceptional online shopping experience.</p>";
+		mailContent += "<p>As a subscriber, you now have access to a world of benefits tailored just for you. Here's what you can look forward to as a valued member of our community:</p>";
+		mailContent += "<p><b>1. Personalized Recommendations:<br></b>   We believe in making your shopping journey effortless and enjoyable. Our advanced algorithms analyze your preferences, purchase history, and browsing behavior to offer personalized product recommendations, ensuring that you discover new items that match your unique style and interests.</p>";
+		mailContent += "<p><b>2. Exclusive Discounts and Offers:<br></b>   Get ready for incredible savings! As a subscriber, you will receive exclusive discounts, promotional offers, and early access to sales events. You'll have the opportunity to grab your favorite products at special prices before they are available to the general public.</p>";
+		mailContent += "<p><b>3. New Arrival Previews:<br></b>   Stay ahead of the curve with our new arrival previews. Be the first to explore the latest collections, seasonal trends, and exciting product launches. You'll have a front-row seat to discover the hottest items and set new trends in the world of fashion and beyond.</p>";
+		mailContent += "<p>Once again, welcome to <b>You&Me Shop!!</b>. Start exploring our extensive range of products and enjoy a seamless shopping experience from the comfort of your home. We can't wait to see you discover the perfect items that reflect your unique style and personality.</p>";
+		mailContent += "<p>Happy shopping!</p>";
+		mailContent += "<p>Warm regards,</p>";
+		mailContent += "<p><b>You&Me Shop!!</b></p>";
+		mailContent += "<hr><img src= 'cid:logo' />";
+		mailContent +="</div></body></html>";
+
+		helper.setFrom(sender);
+		helper.setTo(base.getEmail());
+		helper.setSubject(mailSubject);
+		helper.setText(mailContent, true);
+
+		FileSystemResource resource = new FileSystemResource("D:\\6Degree\\6degree\\subscriptionModule\\you&me.jpg");
+		helper.addInline("logo", resource);
+
+		javaMailSender.send(message);
+		return "Subscribed Successfully...";
+
+	}
+//--------------------------------------------------------------------
+
+	@Override
+	public String sendMailToAuthor(Base base) throws MessagingException {
+		String fullname = base.getName();
+		String email = base.getEmail();
+
+		MimeMessage message = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+		String mailSubject = " New subscriber added";
+		String mailContent = "<p><b>Subscriber Name:</b>" + fullname + "</p>";
+		mailContent += "<p><b>Subscriber email:</b>" + email + "</p>";
+		mailContent += "<hr><img src= 'cid:logo' />";
+
+		helper.setFrom(sender);
+		helper.setTo(sender);
+		helper.setSubject(mailSubject);
+		helper.setText(mailContent, true);
+
+		FileSystemResource resource = new FileSystemResource("D:\\6Degree\\6degree\\subscriptionModule\\you&me.jpg");
+		helper.addInline("logo", resource);
+
+		javaMailSender.send(message);
+		return "Subscribed Successfully...";
+
+	}
+
+}
+
+//--------------------------------------------------------------------
+
+//	@Override
+//	public String sendSimpleMail(Base base) {
+//		// Creating a simple mail message
+//		SimpleMailMessage mailMessage = new SimpleMailMessage();
+//		mailMessage.setFrom(sender);
+//		mailMessage.setTo(base.getEmail());
+//		mailMessage.setText("Hey!!" + "\n" + "This is an simple Email" + "\n" + " Thanks");
+//		mailMessage.setSubject("Subscription email message");
+//
+//		javaMailSender.send(mailMessage);
+//		return "Mail Sent Successfully...";
+//	}
+
+//-------------------------------------------------------------	
+//@Override
+//public String sendMailWithAttachment(Base base) {
+//	// Creating a mime message
+//	MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+//
+//	MimeMessageHelper mimeMessageHelper;
+//	try {
+//		mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+//		mimeMessageHelper.setFrom(sender);
+//		mimeMessageHelper.setTo(base.getEmail());
+//		mimeMessageHelper.setText("Hey!!" + "\n" + "This is an simple Email" + "\n" + " Thanks");
+//		mimeMessageHelper.setSubject("Subscription email message");
+//		// Adding the attachment
+//		FileSystemResource file = new FileSystemResource(new File("D:\\6Degree\\send email\\attachement.jpeg"));
+//
+//		mimeMessageHelper.addAttachment(file.getFilename(), file);
+//
+//		// Sending the mail
+//		javaMailSender.send(mimeMessage);
+//		return "Mail sent Successfully";
+//	}
+//
+//	// Catch block to handle MessagingException
+//	catch (MessagingException e) {
+//
+//		// Display message when exception occurred
+//		return "Error while sending mail!!!";
+//	}
+//
+//}
